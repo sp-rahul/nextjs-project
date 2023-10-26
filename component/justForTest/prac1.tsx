@@ -1,9 +1,8 @@
 import * as React from "react";
-import { useForm, useFieldArray, useWatch, Control } from "react-hook-form";
-import {Box, Button, TextField} from "@mui/material";
+import {useFieldArray, useForm} from "react-hook-form";
+import {Box, Button, Container, TextField} from "@mui/material";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useState} from "react";
 
 const validationSchema = yup.object().shape({
 
@@ -38,18 +37,14 @@ export default function Prac1() {
         control
     });
 
-    // const [inputFields, setInputFields] = useState(
-    //     name: 'cart',
-    //     control
-    // )
     const onSubmit = (data: FormValues) => console.log(data);
 
     return (
-        <div>
+        <Container>
             <form onSubmit={handleSubmit(onSubmit)}>
                 {fields.map((field, index) => {
                     return (
-                        <div key={field.id}>
+                        <Box key={field.id}>
                             <Box  key={field.id}>
                                 <TextField
                                     placeholder="Phone Number"
@@ -64,12 +59,12 @@ export default function Prac1() {
                                     DELETE
                                 </Button>
                             </Box>
-                        </div>
+                        </Box>
                     );
                 })}
 
 
-                <button
+                <Button
                     type="button"
                     onClick={() =>
                         append({
@@ -78,9 +73,13 @@ export default function Prac1() {
                     }
                 >
                     APPEND
-                </button>
-                <input type="submit" />
+                </Button>
+                <Button
+                    type="submit"
+                >
+                    Submit
+                </Button>
             </form>
-        </div>
+        </Container>
     );
 }
