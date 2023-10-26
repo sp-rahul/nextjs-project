@@ -1,6 +1,7 @@
-import AddPhoneNumber from "@/component/justForTest/AddPhoneNumber";
+"use client"
+import App from "@/component/justForTest/ref";
 
 const page5 = () => {
-    return < AddPhoneNumber/>;
+    return < App/>;
 };
 export default page5;

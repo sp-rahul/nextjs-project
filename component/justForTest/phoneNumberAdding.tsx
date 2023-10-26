@@ -16,13 +16,6 @@ const PhoneNumber=()=>{
         { phone: ''}
     ])
     const {control,unregister,handleSubmit}=useForm()
-
-    const handleFormChange = (index:number, event:any) => {
-        let data = [...inputFields];
-        // @ts-ignore
-        data[index][event.target.name] = event.target.value;
-        setInputFields(data);
-    }
     const addFields = () => {
         let newField = { phone: '' }
 
@@ -30,14 +23,12 @@ const PhoneNumber=()=>{
         console.log("new",inputFields)
     }
     const removeFields = (indexToRemove: number) => {
-        // let data = [...inputFields];
-        // console.log("remove data",data)
-        // // data.splice(index, 1)
-        // const abc = unregister(data[index].phone)
-        // console.log("remove abc",abc)
-        const updatedFields = inputFields.filter((_, index) => index !== indexToRemove);
-        console.log("updatedFields",updatedFields)
-        setInputFields(updatedFields)
+
+
+       unregister(`inputFields[${indexToRemove}].phone`)
+        const updatedFields = inputFields.filter((field, index) => index !== indexToRemove);
+
+        setInputFields(updatedFields);
     }
     const submit =  (data:any) => {
        console.log(data)
@@ -73,50 +64,3 @@ const PhoneNumber=()=>{
     </Container>)
 }
 export default PhoneNumber
-
-//
-// import { useForm } from "react-hook-form";
-// import { useState } from "react";
-// import {Button, Container, TextField} from "@mui/material";
-//
-// const PhoneNumber = () => {
-//     const {register, handleSubmit} = useForm();
-//
-//     const [phoneFields, setPhoneFields] = useState<[string][]>([]);
-//
-//     const addPhoneField = () => {
-//         setPhoneFields([...phoneFields, [""]]);
-//     };
-//
-//     const removePhoneField = (index: number) => {
-//         const updatedPhoneFields = [...phoneFields];
-//         updatedPhoneFields.splice(index, 1);
-//         setPhoneFields(updatedPhoneFields);
-//     };
-//
-//     return (
-//         <Container>
-//         <form onSubmit={handleSubmit(() => {console.log(phoneFields)})}>
-//             {phoneFields.map((phoneField, index) => {
-//                 return (
-//                     <div key={index}>
-//                         <TextField
-//                             type="tel"
-//                             {...register(`phone[${index}]`)}
-//                             value={phoneField[index]}
-//                         />
-//                         <Button type="button" onClick={() => removePhoneField(index)}>
-//                             Remove
-//                         </Button>
-//                     </div>
-//                 );
-//             })}
-//             <Button type="button" onClick={() => addPhoneField()}>
-//                 Add
-//             </Button>
-//             <Button type="submit">Submit</Button>
-//         </form>
-//         </Container>)
-//
-// }
-// export default PhoneNumber
