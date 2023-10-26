@@ -1,5 +1,5 @@
 'use client'
-import PhoneNumber from "@/component/justForTest/NestedValidation";
+import PhoneNumber from "@/component/justForTest/phoneNumberAdding";
 
 const page2 = () => {
     return < PhoneNumber/>;
